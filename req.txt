@@ -1,0 +1,14 @@
+flask
+flask-cors
+python-dotenv
+pydantic
+colorama
+requests
+tldextract
+google-generativeai
+groq
+serpapi
+tavily-python
+opencv-python
+Pillow
+newspaper3k

@@ -1,0 +1,53 @@
+{
+    "claim0": {
+        "claim": "Aakash Ambani hit an Aston Martin in Mumbai.",
+        "deepseek_response": ": Unverifiable  \nReasoning: No reputable news outlets (e.g., Times of India, Hindustan Times, Reuters) have reported an incident of Aakash Ambani hitting an Aston Martin in Mumbai; the claim appears only in unverified social‑media posts.  \nSources: (1) Absence of coverage in major Indian news archives; (2) Fact‑check databases (e.g., Alt News) show no record of such an event.",
+        "llama_response": "Critique: \nThe reasoning relies heavily on the absence of coverage in major Indian news archives, which, while suggestive, is not conclusive. It's possible that a smaller news outlet or local publication might have reported the incident without being picked up by larger national news outlets.",
+        "gemini_response": {
+            "verdict": "Unverifiable",
+            "confidence": 0.6,
+            "conclusion": "The claim is unverifiable as major news outlets have not reported it. While LLaMA suggests smaller outlets might have, there's no concrete evidence to support the claim.",
+            "evidence_summary": "Absence of coverage in major news outlets and fact-checking databases; possibility of smaller, unverified reports."
+        },
+        "tavily_sources": [
+            {
+                "title": "Multiple people shot at Brown University, official says - TradingView",
+                "url": "https://www.tradingview.com/news/reuters.com,2025:newsml_S0N3W504G:0-multiple-people-shot-at-brown-university-official-says/",
+                "score": 0.06,
+                "snippet": "Reuters Multiple people shot at Brown University, official saysReuters Judge says Comey evidence was wrongfully retained, creating hurdle for new charges Image 17  Image 18 Reuters Engine failure forces United Airlines flight to return to DC-area airport Image 19 Reuters United Airlines Says Shortly..."
+            },
+            {
+                "title": "Multiple people shot at Brown University, official says; AP says 2 killed - Reuters",
+                "url": "https://www.reuters.com/world/us/multiple-people-shot-brown-university-official-says-2025-12-13/",
+                "score": 0.05,
+                "snippet": "Our Standards: The Thomson Reuters Trust Principles., opens new tab\n\nPurchase Licensing Rights\n\n## Read Next\n\n United Statescategory\n\n  Judge says Comey evidence was wrongfully retained, creating hurdle for new charges\n United Statescategory\n\n  Pinched by higher prices, Trump voters say: Don't blame..."
+            },
+            {
+                "title": "UK police not taking further action over Andrew bodyguard claim - Reuters",
+                "url": "https://www.reuters.com/world/uk/uk-police-not-taking-further-action-over-andrew-bodyguard-claim-2025-12-13/",
+                "score": 0.05,
+                "snippet": "\"To date, we have not received any additional evidence that would support reopening the investigation. In the absence of any further information, we will be taking no further action.\"\n\nReporting by James Davey. Editing by Mark Potter\n\nOur Standards: The Thomson Reuters Trust Principles., opens new t..."
+            },
+            {
+                "title": "Motorcyclist arrested in crash that killed 18-year-old woman - CBS News",
+                "url": "https://www.cbsnews.com/miami/video/motorcyclist-arrested-in-crash-that-killed-18-year-old-woman/",
+                "score": 0.05,
+                "snippet": "More +  More + [...] More + \nWeb Extras [...] More + \nPolitics"
+            },
+            {
+                "title": "Six held for brutal murder of realtor in Kapra; one absconding - The Hindu",
+                "url": "https://www.thehindu.com/news/cities/Hyderabad/six-held-for-brutal-murder-of-realtor-in-kapra-one-absconding/article70381746.ece",
+                "score": 0.04,
+                "snippet": "Life & Style   Fashion   Fitness   Homes and gardens   Luxury   Motoring   Travel\n\nSociety\n\nSociety   Faith   History & Culture\n\nBooks\n\nBooks\n\nHindi Belt\n\nThe Hindu On Books Books of the week, reviews, excerpts, new titles and features.SEE ALL NEWSLETTERS\n\n Children   Elections \n\nFood\n\nFood   Dining..."
+            },
+            {
+                "title": "Car thief allegedly steals Porsche, crashes into three cars and flips over in Midtown - New York Post",
+                "url": "https://nypost.com/2025/12/13/us-news/car-thief-steals-porsche-crashes-into-three-cars-and-flips-over-in-midtown/",
+                "score": 0.04,
+                "snippet": "##### Actor Peter Greene's possible last words revealed just days...\n\n##### Mom stabbed in NYC Macy's bathroom while changing baby was going...\n\n##### 'Pulp Fiction,' 'The Mask' actor found dead at 60 inside his NYC...\n\n##### Trump tells ISIS, ‘we will retaliate’ after ‘terrible’...\n\nUS News\n\n# Car ..."
+            }
+        ],
+        "final_conclusion": "The claim is unverifiable as major news outlets have not reported it. While LLaMA suggests smaller outlets might have, there's no concrete evidence to support the claim.",
+        "confidence": 0.6
+    }
+}
