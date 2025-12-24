@@ -1,4 +1,4 @@
-from .GeminiModel import GeminiChat
+from .GeminiModel import GroqChat
 from .LlamaModel import LlamaChat
 from .DeepseekModel import DeepseekChat
-from .GeminiIntermediate import GeminiIntermediate
+from .GeminiIntermediate import GroqIntermediate

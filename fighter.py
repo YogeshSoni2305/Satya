@@ -63,8 +63,9 @@ class ClaimFighter:
         # Initialize models (reuse models module)
         self.llama = models.LlamaChat(api_key=self.groq_key, system_prompt=LLAMA_SYSTEM_PROMPT)
         self.deepseek = models.DeepseekChat(api_key=self.groq_key, system_prompt=DEEPSEEK_SYSTEM_PROMPT)
-        self.gemini_chat = models.GeminiChat(api_key=self.gemini_key, system_prompt=GEMINI_EXTRACTOR_SYSTEM_PROMPT)
-        self.gemini_arbitrator = models.GeminiIntermediate(api_key=self.gemini_key, system_prompt=GEMINI_INTERMEDIATE_SYSTEM_PROMPT)
+        self.gemini_chat = models.GroqChat(api_key=self.gemini_key,system_prompt=GEMINI_EXTRACTOR_SYSTEM_PROMPT)
+        self.gemini_arbitrator = models.GroqIntermediate(api_key=self.gemini_key,system_prompt=GEMINI_INTERMEDIATE_SYSTEM_PROMPT)
+
 
         # store trusted sources locally as well (in case you want to change per instance)
         self.trusted_sources = TRUSTED_SOURCES.copy()
@@ -99,18 +100,47 @@ class ClaimFighter:
     # ----------------------------
     # Claim Extraction
     # ----------------------------
+    # def extract_claims(self, message: dict) -> dict:
+    #     """Extract factual claims and questions from the input using Gemini extractor."""
+    #     # reuse self.gemini_chat (keeps conversation history if needed)
+    #     try:
+    #         response = self.gemini_chat.send_message(str(message))
+    #     except Exception as e:
+    #         print(f"[EXTRACTOR ERROR] {e}")
+    #         # fallback: return an empty claim structure to avoid breaking pipeline
+    #         return {"claims": []}
+    #     print(f"{Fore.MAGENTA}RESPONSE FROM CLAIM EXTRACTOR (GEMINI):{Style.RESET_ALL}")
+    #     print(response)
+    #     return response
     def extract_claims(self, message: dict) -> dict:
-        """Extract factual claims and questions from the input using Gemini extractor."""
-        # reuse self.gemini_chat (keeps conversation history if needed)
+        """Extract factual claims and questions from the input using LLM extractor."""
         try:
             response = self.gemini_chat.send_message(str(message))
         except Exception as e:
             print(f"[EXTRACTOR ERROR] {e}")
-            # fallback: return an empty claim structure to avoid breaking pipeline
-            return {"claims": []}
-        print(f"{Fore.MAGENTA}RESPONSE FROM CLAIM EXTRACTOR (GEMINI):{Style.RESET_ALL}")
+            return {"claims": [], "questions": []}
+
+        print(f"{Fore.MAGENTA}RESPONSE FROM CLAIM EXTRACTOR:{Style.RESET_ALL}")
         print(response)
-        return response
+
+        # ---- FIX: Normalize Groq output ----
+        claims = []
+        questions = []
+
+        if isinstance(response, list):
+            for item in response:
+                if isinstance(item, dict):
+                    claims.extend(item.get("claims", []))
+                    questions.extend(item.get("questions", []))
+        elif isinstance(response, dict):
+            claims = response.get("claims", [])
+            questions = response.get("questions", [])
+
+        return {
+            "claims": list(set(claims)),        # deduplicate
+            "questions": list(set(questions))
+        }
+
 
     # ----------------------------
     # Save Markdown Utility

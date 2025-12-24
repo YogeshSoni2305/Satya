@@ -67,7 +67,7 @@ Rules:
 3. If evidence is strong and critique minor -> raise confidence.
 4. If DeepSeek cites no primary/authoritative sources and LLaMA points gaps -> lower confidence or mark Unverifiable.
 5. Always return JSON (no extra text).
-
+6.TRy always to give a verdict
 Output JSON schema (exact):
 {
   "verdict": "True" | "False" | "Unverifiable",

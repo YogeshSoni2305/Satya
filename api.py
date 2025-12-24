@@ -1,9 +1,13 @@
+
+
 from fastapi import FastAPI, UploadFile, File, Form
 from typing import Optional
 from fighter import run_pipeline
 import tempfile
-import os
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi import Header, HTTPException
+import os
+from datetime import datetime
 
 
 
@@ -15,11 +19,28 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:5173"],  # or "*"
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+@app.post("/cron/ping")
+async def cron_ping(x_cron_secret: str = Header(None)):
+    if x_cron_secret != os.getenv("CRON_SECRET"):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    print("🕒 Cron hit at:", datetime.utcnow())
+
+
+
+    return {
+        "status": "ok",
+        "message": "cron alive",
+        "time": datetime.utcnow().isoformat()
+    }
+
+
 @app.post("/fact-check")
 async def fact_check(
     text: Optional[str] = Form(None),
@@ -65,7 +86,6 @@ async def fact_check(
         gemini = claim_block.get("gemini_response", {})
         tavily_sources = claim_block.get("tavily_sources", [])
 
-        # ---- FILTER RELEVANT SOURCES ONLY ----
         filtered_sources = []
         for src in tavily_sources:
             text_blob = (
@@ -89,9 +109,6 @@ async def fact_check(
         "status": "success",
         "results": results
     }
-
-
-
-
+    print(results)
 
 
