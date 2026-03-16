@@ -46,7 +46,18 @@ class Settings(BaseSettings):
 
     @property
     def cors_origin_list(self) -> list[str]:
-        return [o.strip() for o in self.CORS_ORIGINS.split(",") if o.strip()]
+        """Parse CORS_ORIGINS string into a clean list of origins."""
+        if not self.CORS_ORIGINS or not self.CORS_ORIGINS.strip():
+            return ["*"]
+            
+        # Split by comma, strip whitespace and quotes
+        origins = [
+            o.strip().strip("'").strip('"') 
+            for o in self.CORS_ORIGINS.split(",") 
+            if o.strip()
+        ]
+        
+        return origins if origins else ["*"]
 
     model_config = {
         "env_file": ".env",
