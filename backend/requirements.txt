@@ -1,0 +1,31 @@
+# Satya Backend — Production Dependencies
+#
+# Trimmed from 80 packages to only what the backend/ actually uses.
+# Removed: Flask, newspaper3k, opencv, pillow, google-genai,
+#          tiktoken, tenacity, websockets, colorama, nltk, numpy
+
+# ── Web Framework ──────────────────────────────────
+fastapi>=0.115.0
+uvicorn>=0.30.0
+python-multipart>=0.0.9
+
+# ── LLM & AI ──────────────────────────────────────
+groq>=0.37.0
+
+# ── Data Validation ────────────────────────────────
+pydantic>=2.10.0
+pydantic-settings>=2.5.0
+
+# ── HTTP Client ────────────────────────────────────
+requests>=2.32.0
+httpx>=0.27.0
+
+# ── Environment ────────────────────────────────────
+python-dotenv>=1.0.0
+
+# ── Auth (Clerk JWT) ──────────────────────────────
+PyJWT[crypto]>=2.9.0
+cryptography>=43.0.0
+
+# ── Logging ────────────────────────────────────────
+loguru>=0.7.0
